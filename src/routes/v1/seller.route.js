@@ -8,7 +8,7 @@ const router = express.Router();
 router
   .route('/') 
   .get(sellerController.getSellers)
-  .post(validate(buyerValidation.registerBuyer),sellerController.registerSeller)
+  .post(sellerController.registerSeller)
 
 router
   .route('/:id')

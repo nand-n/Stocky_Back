@@ -2,6 +2,8 @@ const express = require('express');
 
 const seller = require("./seller.route")
 const buyer = require("./buyer.route")
+const contact = require("./contact.route")
+
 
 
 const router = express.Router();
@@ -14,6 +16,10 @@ const defaultRoutes = [
   {
     path: '/buyer',
     route: buyer,
+  },
+  {
+    path: '/contact',
+    route: contact,
   },
   
 ];

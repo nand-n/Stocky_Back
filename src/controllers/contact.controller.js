@@ -2,23 +2,23 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { buyerService } = require('../services');
+const { contactService } = require('../services');
 
 
-const getBuyers = catchAsync(async (req, res) => {
-    const result = await buyerService.queryBuyers();
+const getContacts = catchAsync(async (req, res) => {
+    const result = await contactService.getContacts();
     res.send(result);
 });
 const getBuyer = catchAsync(async (req, res) => {
-    const buyer = await buyerService.getBuyerById(req.params.id);
+    const buyer = await contactService.getSellerById(req.params.id);
     if (!buyer) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Buyer not found');
     }
     res.send(buyer);
 });
-const registerBuyer=(async(req,res)=>{
+const registerContact=(async(req,res)=>{
     try {
-          const buyer=await buyerService.createBuyer(req.body)
+          const buyer=await contactService.createContact(req.body)
     if(!buyer){
         res.send( ApiError(httpStatus['401_NAME'] , "Buyer Register is Faild , Try again!"))
     }
@@ -34,7 +34,7 @@ const registerBuyer=(async(req,res)=>{
 })
 
 const updateBuyer = (async(req,res)=>{
-    const updateBuyer = await buyerService.updateBuyer(req.body,req.params)
+    const updateBuyer = await contactService.updateSeller(req.body,req.params)
     if(!updateBuyer){
         throw new ApiError(httpStatus.NOT_MODIFIED , "Update user faild, try again " )
     }
@@ -43,7 +43,7 @@ const updateBuyer = (async(req,res)=>{
 })
 
 const deleteBuyer = (async(req,res) =>{
-    const delUser = await buyerService.deleteBuyer(req.params)
+    const delUser = await contactService.deleteSeller(req.params)
     if(!delUser){
         throw new ApiError(httpStatus.NOT_MODIFIED , "Delete user faild, try again " )
     }
@@ -53,9 +53,9 @@ const deleteBuyer = (async(req,res) =>{
 })
 
 module.exports = {
-    getBuyers,
+    getContacts,
     getBuyer,
-    registerBuyer,
+    registerContact,
     updateBuyer,
     deleteBuyer
 };

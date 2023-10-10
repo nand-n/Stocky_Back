@@ -4,20 +4,21 @@ const Joi = require('joi');
 
 const registerBuyer={
 body: Joi.object().keys({
-  name: Joi.string().required(),
-  cognome: Joi.string().required(),
-  email: Joi.string().required(),
-  numeroditelefono: Joi.number().required(),
-  nomeazienda: Joi.string().required(),
-  sitoweb: Joi.string().required(),
-  tutto: Joi.boolean().required(),
-  abbigliamento: Joi.boolean().required(),
-  cosmetica:Joi.boolean().required(),
-  casa:Joi.boolean().required(),
-  calzature:Joi.boolean().required(),
-  benidiconsumo:Joi.boolean().required(),
-  accessori:Joi.boolean().required(),
-  altro:Joi.boolean().required(),
+   name: Joi.string().required("Name is Required!"),
+  cognome: Joi.string().required("Cognome is Required!"),
+  email: Joi.string().required("Email is Required!"),
+  numeroditelefono: Joi.number().empty(),
+  nomeazienda: Joi.string().empty(),
+  sitoweb: Joi.string().empty(),
+  
+  tutto: Joi.boolean(),
+  abbigliamento: Joi.boolean(),
+  cosmetica:Joi.boolean(),
+  casa:Joi.boolean(),
+  calzature:Joi.boolean(),
+  benidiconsumo:Joi.boolean(),
+  accessori:Joi.boolean(),
+  altro:Joi.boolean(),
 }),
 }
 const updateBuyer ={
@@ -39,5 +40,5 @@ const updateBuyer ={
 
 module.exports = {
   registerBuyer,
-  // updateBuyer,
+  updateBuyer,
 };

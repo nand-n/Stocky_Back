@@ -19,11 +19,19 @@ const getSeller = catchAsync(async (req, res) => {
     res.send(Seller);
 });
 const registerSeller=(async(req,res)=>{
-    const Seller=await sellerService.createSeller(req.body)
+    try {
+        const Seller=await sellerService.createSeller(req.body)
     if(!Seller){
         throw new ApiError(httpStatus['401_NAME'] , "Seller Register is Faild , Try again!")
     }
     res.send(Seller)
+    } catch (error) {
+        res.json({
+            status:"Error",
+            message:error,
+           })
+    }
+    
 })
 
 const updateSeller = (async(req,res)=>{

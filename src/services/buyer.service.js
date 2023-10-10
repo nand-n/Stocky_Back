@@ -33,8 +33,16 @@ const getBuyerById = async (id) => {
 };
 
 const createBuyer = async (buyerBody) => {
-  const buyer = buyerRepository.create(buyerBody);
+  try {
+     const buyer = buyerRepository.create(buyerBody);
+     if(!buyer){
+      throw  new Eror(buyer)
+     }
   return await buyerRepository.save(buyer);
+  } catch (error) {
+    throw error
+  }
+ 
 };
 
 const updateBuyer = async (updateBody , parmas) => {

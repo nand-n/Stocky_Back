@@ -7,16 +7,17 @@ class Seller extends Base {
         this.name= {type:"text" }
         this.cognome= {type:"text" }
         this.email= {type:"text" }
-        this.numeroditelefono= {type:"double precision" }
-        this.nomeazienda= {type:"text"}
-        this.tutto= {type:"bool"}
-        this.abbigliamento= {type:"bool" }
-        this.cosmetica= {type:"bool"  }
-        this.casa= {type:"bool" }
-        this.benidiconsumo= {type:"bool" }
-        this.calzature= {type:"bool" }
-        this.accessori= {type:"bool" }
-        this.altro= {type:"bool" }
+        this.numeroditelefono= {type:"double precision" , nullable:true }
+        this.nomeazienda= {type:"text" , nullable:true}
+        this.sitoweb= {type:"text" , nullable:true}
+        this.tutto= {type:"bool" , nullable:true}
+        this.abbigliamento= {type:"bool", nullable:true }
+        this.cosmetica= {type:"bool" , nullable:true }
+        this.casa= {type:"bool" , nullable:true}
+        this.benidiconsumo= {type:"bool" , nullable:true}
+        this.calzature= {type:"bool" , nullable:true}
+        this.accessori= {type:"bool" , nullable:true}
+        this.altro= {type:"bool" , nullable:true}
     }
 
 }

@@ -1,10 +1,10 @@
 const httpStatus = require('http-status');
-const { Seller } = require('../models');
+const { Contact } = require('../models');
 const dataSource = require('../utils/createDatabaseConnection');
 const sortBy = require('../utils/sorter');
 const findAll = require('./Plugins/findAll');
 
-const sellerRepository = dataSource.getRepository(Seller).extend({ findAll, sortBy });
+const contactRepository = dataSource.getRepository(Contact).extend({ findAll, sortBy });
 
 /**
  * Query for users
@@ -16,10 +16,10 @@ const sellerRepository = dataSource.getRepository(Seller).extend({ findAll, sort
  * @returns {Promise<QueryResult>}
  */
 
-const getSellers = async () => {
+const getContacts = async () => {
 
-  return await sellerRepository.find({
-    tableName:"Seller"
+  return await contactRepository.find({
+    tableName:"Contact"
   })
 };
 
@@ -29,13 +29,13 @@ const getSellers = async () => {
  * @returns {Promise<Risk>}
  */
 const getSellerById = async (id) => {
-  return await sellerRepository.findOneBy({ id: id });
+  return await contactRepository.findOneBy({ id: id });
 };
 
-const createSeller = async (selerBody) => {
+const createContact = async (selerBody) => {
   try {
-     const seller = sellerRepository.create(selerBody);
-  return await sellerRepository.save(seller);
+     const seller = contactRepository.create(selerBody);
+  return await contactRepository.save(seller);
   } catch (error) {
     throw error
   }
@@ -44,20 +44,20 @@ const createSeller = async (selerBody) => {
 
 const updateSeller = async (updateBody , parmas) => {
   const {id} = parmas 
-    await sellerRepository.update(id, updateBody);
-    return sellerRepository.findBy({ id:id });
+    await contactRepository.update(id, updateBody);
+    return contactRepository.findBy({ id:id });
 };
 
 const deleteSeller = async(delBody)=>{
   const {id} = delBody
-return await sellerRepository.delete({ id: id });
+return await contactRepository.delete({ id: id });
 }
 
 
 module.exports = {
-  getSellers,
+  getContacts,
   getSellerById,
-  createSeller,
+  createContact,
   updateSeller,
   deleteSeller
 };
